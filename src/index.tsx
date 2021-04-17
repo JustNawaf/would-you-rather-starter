@@ -4,13 +4,9 @@ import './css/App.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import Middleware from './middleware';
-import Reducers from './reducers';
-import { createStore } from 'redux';
 import Nav from './components/Nav';
 import { BrowserRouter } from 'react-router-dom';
-
-const store = createStore(Reducers,Middleware);
+import store from './store';
 
 
 ReactDOM.render(

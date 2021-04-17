@@ -1,32 +1,27 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import { User } from '../../actions/User';
+import { UserInterface } from '../../actions/User';
+import { StoreInterface } from '../../store';
 
 
 type HomeState = {
-    user:User,
+    user:UserInterface,
 }
   
 class Home extends Component<HomeState> {
     render() {
         const { user } = this.props;
-        
-        if(user === null)
-          return <Redirect to="login" />
-        
-        
+    
         return (
             <div>
-                Home
+                Hello {user.name}
             </div>
         )
     }
 }
 
-function mapStateToProps(state:any) {
-    const { user } = state;
-
+function mapStateToProps(store:StoreInterface) {
+    const { user } = store;
     return {
         user
     };

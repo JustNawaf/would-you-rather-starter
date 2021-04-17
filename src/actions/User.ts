@@ -1,18 +1,48 @@
 export const LOG_IN = "LOG_IN";
+export const SET_USERS = "SET_USERS";
 
 export interface UserActionInterface {
     type:string,
-    id:string,
+    user:UserInterface,
 
 };
 
-export interface User{
+export interface setUsersActionInterface {
+    type:string,
+    users:{
+        [key:string]:UserInterface
+    },
+
+};
+
+
+export interface UserInterface{
     id:string,
+    name:string,
+    avatarURL:string,
+    answers:{
+        [key:string]:string
+    },
+    questions:Array<string>,
+    color:string
 }
 
-export function user(id:string){
+function login(user:UserInterface){
     return {
         type:LOG_IN,
-        id
+        user
     };
+}
+
+export function setUsers(users:{[key:string]:UserInterface}){
+    return {
+        type:SET_USERS,
+        users
+    };
+}
+
+export function handleLoginUser(user:UserInterface){
+    return (dispatch:Function) => {
+        dispatch(login(user));
+    }
 }
