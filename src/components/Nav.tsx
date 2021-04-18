@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { UserInterface } from '../actions/User';
+import { logout, UserInterface } from '../actions/User';
 import { StoreInterface } from '../store';
 import { Redirect } from 'react-router-dom';
 
 
 interface NavState extends RouteComponentProps{
+    dispatch:Function,
     user:UserInterface,
     children:any
 };
@@ -29,7 +30,8 @@ class Nav extends Component<NavState> {
     }
 
     logout = () => {
-        alert("Logout");
+        const { dispatch } = this.props;
+        dispatch(logout());
     }
     
     render() {
