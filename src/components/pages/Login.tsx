@@ -25,10 +25,10 @@ class Login extends Component<LoginState,any> {
         return (
             <div className="w-full h-full">
                 <div className="flex flex-col justify-center items-center">
-                    <div className="flex flex-row justify-center items-center">
+                    <div className="flex flex-col lg:flex-row justify-center items-center">
                         {
                             Object.keys(users).map((key) => (
-                                <div key={key} className={`flex flex-col px-4 py-2 items-center w-64 h-80 mx-4 border-none rounded-md ${users[key].color}`}>
+                                <div key={key} className={`flex flex-col mt-4 lg:mt-0 px-4 py-2 items-center w-64 h-80 mx-4 border-none rounded-md ${users[key].color}`}>
                                     <img className="w-36 h-36 border-none rounded-full shadow-2xl" src={users[key].avatarURL} alt="User Avatar"/>
                                     <h1 className="text-md text-gray-800 font-mono mt-2">{users[key].name}</h1>
                                     <div className="w-full h-full flex justify-center items-center">
