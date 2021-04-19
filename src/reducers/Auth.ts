@@ -1,4 +1,4 @@
-import { LOG_IN, LOG_OUT, UserActionInterface } from '../actions/User';
+import { LOG_IN, LOG_OUT, UserActionInterface } from '../actions/Auth';
 
 export default function user(state = null, action: UserActionInterface) {
     switch (action.type) {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { handleLoginUser, UserInterface } from '../../actions/User';
+import { handleLoginUser, UserInterface } from '../../actions/Auth';
 import { StoreInterface } from '../../store';
 
 interface LoginState extends RouteComponentProps {

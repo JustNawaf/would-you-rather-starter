@@ -1,21 +1,11 @@
 export const LOG_IN = "LOG_IN";
 export const LOG_OUT = "LOG_OUT";
-export const SET_USERS = "SET_USERS";
 
 export interface UserActionInterface {
     type:string,
     user:UserInterface,
 
 };
-
-export interface setUsersActionInterface {
-    type:string,
-    users:{
-        [key:string]:UserInterface
-    },
-
-};
-
 
 export interface UserInterface{
     id:string,
@@ -41,12 +31,6 @@ export function logout(){
     };
 }
 
-export function setUsers(users:{[key:string]:UserInterface}){
-    return {
-        type:SET_USERS,
-        users
-    };
-}
 
 export function handleLoginUser(user:UserInterface){
     return (dispatch:Function) => {

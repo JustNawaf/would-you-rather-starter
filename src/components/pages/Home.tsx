@@ -1,29 +1,29 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { UserInterface } from '../../actions/User';
+import { UserInterface } from '../../actions/Auth';
 import { StoreInterface } from '../../store';
 
 
 type HomeState = {
-    user:UserInterface,
+    auth:UserInterface,
 }
   
 class Home extends Component<HomeState> {
     render() {
-        const { user } = this.props;
+        const { auth } = this.props;
     
         return (
             <div>
-                Hello {user.name}
+                Hello {auth.name}
             </div>
         )
     }
 }
 
 function mapStateToProps(store:StoreInterface) {
-    const { user } = store;
+    const { auth } = store;
     return {
-        user
+        auth
     };
 }
 

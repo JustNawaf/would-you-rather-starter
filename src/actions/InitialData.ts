@@ -1,5 +1,5 @@
 import { _getUsers } from '../Data/_Data';
-import { setUsers } from './User';
+import { setUsers } from './Users';
 
 export const handleInitialData = () => {
     return (dispatch: Function) => {

@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { logout, UserInterface } from '../actions/User';
+import { logout, UserInterface } from '../actions/Auth';
 import { StoreInterface } from '../store';
 import { Redirect } from 'react-router-dom';
 
 
 interface NavState extends RouteComponentProps{
     dispatch:Function,
-    user:UserInterface,
+    auth:UserInterface,
     children:any
 };
 class Nav extends Component<NavState> {
@@ -35,9 +35,9 @@ class Nav extends Component<NavState> {
     }
     
     render() {
-        const { user, location } = this.props;
+        const { auth, location } = this.props;
 
-        if(user === null && location.pathname !== "/login")
+        if(auth === null && location.pathname !== "/login")
             return <Redirect to="login" />
 
         return (
@@ -62,14 +62,14 @@ class Nav extends Component<NavState> {
                         </div>
                         </div>
                         {
-                            user !== null ?  
+                            auth !== null ?  
                             <div className="hidden md:block">
                                 <div className="ml-4 flex items-center md:ml-6">                           
                                     <div className="ml-3 relative">
                                         <div>
                                             <button type="button" onClick={this.toggleUserModal} className="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                                 <span className="sr-only">Open user menu</span>
-                                                <img className="h-8 w-8 rounded-full" src={user.avatarURL} alt=""/>
+                                                <img className="h-8 w-8 rounded-full" src={auth.avatarURL} alt=""/>
                                             </button>
                                         </div>
                                         
@@ -112,14 +112,14 @@ class Nav extends Component<NavState> {
                                 <button  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Leader Board</button>
                             </div>
                             {
-                                user !== null && 
+                                auth !== null && 
                                 <div className="pt-4 pb-3 border-t border-gray-700">
                                     <div className="flex items-center px-5">
                                         <div className="flex-shrink-0">
-                                            <img className="h-10 w-10 rounded-full" src={user.avatarURL} alt=""/>
+                                            <img className="h-10 w-10 rounded-full" src={auth.avatarURL} alt=""/>
                                         </div>
                                         <div className="ml-3">
-                                            <div className="text-base font-medium leading-none text-white">{user.name}</div>
+                                            <div className="text-base font-medium leading-none text-white">{auth.name}</div>
                                         </div>
                                     </div>
                                     <div className="mt-3 px-2 space-y-1">
@@ -141,9 +141,9 @@ class Nav extends Component<NavState> {
 }
 
 function mapStateToProps(store:StoreInterface) {
-    const { user } = store;
+    const { auth } = store;
     return {
-        user
+        auth
     };
 }
 
