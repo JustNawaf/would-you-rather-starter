@@ -1,4 +1,4 @@
-import { setQuestionsActionInterface, SET_QUESTIONS } from "../actions/Questions";
+import { CREATE_QUESTION, setQuestionsActionInterface, SET_QUESTIONS } from "../actions/Questions";
 
 export default function questions(state = {}, action: setQuestionsActionInterface) {
     switch (action.type) {
@@ -6,7 +6,20 @@ export default function questions(state = {}, action: setQuestionsActionInterfac
             return {
                 ...action.questions
             }
-            
+
+        case CREATE_QUESTION :
+            let newQuestion = {};
+            if(action.question){
+                newQuestion = {
+                    [action.question.id]:{
+                        ...action.question
+                    }
+                };
+            }
+            return {
+                ...state,
+                ...newQuestion
+            }   
         default :
             return state;
     }

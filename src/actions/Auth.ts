@@ -1,9 +1,11 @@
 export const LOG_IN = "LOG_IN";
 export const LOG_OUT = "LOG_OUT";
+export const UPDATE_QUESTIONS_USER = "UPDATE_QUESTIONS_USER";
 
 export interface UserActionInterface {
     type:string,
     user:UserInterface,
+    id?:string
 
 };
 
@@ -35,5 +37,18 @@ export function logout(){
 export function handleLoginUser(user:UserInterface){
     return (dispatch:Function) => {
         dispatch(login(user));
+    }
+}
+
+
+export function addQuestionToUser(user:UserInterface,questionID:string){
+    let updatedUser = {
+        ...user,
+        questions:user.questions.concat(questionID)
+    };
+
+    return {
+        type:UPDATE_QUESTIONS_USER,
+        user:updatedUser
     }
 }

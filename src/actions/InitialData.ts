@@ -8,8 +8,5 @@ export const handleInitialData = () => {
             dispatch(setUsers(users));
         })
 
-        _getQuestions().then((questions) => {
-            dispatch(setQuestions(questions));
-        })
     }
 }

@@ -13,8 +13,6 @@ export interface setUsersActionInterface {
 };
 
 
-
-
 export function setUsers(users:{[key:string]:UserInterface}){
     return {
         type:SET_USERS,

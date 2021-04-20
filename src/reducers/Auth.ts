@@ -1,4 +1,4 @@
-import { LOG_IN, LOG_OUT, UserActionInterface } from '../actions/Auth';
+import { LOG_IN, LOG_OUT, UPDATE_QUESTIONS_USER, UserActionInterface } from '../actions/Auth';
 
 export default function user(state = null, action: UserActionInterface) {
     switch (action.type) {
@@ -7,7 +7,10 @@ export default function user(state = null, action: UserActionInterface) {
 
         case LOG_OUT :
             return null
-            
+        
+        case UPDATE_QUESTIONS_USER:
+            return action.user
+
         default :
             return state;
     }

@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom';
 import { handleInitialData } from '../actions/InitialData';
 import Home from './pages/Home';
 import Login from './pages/Login';
+import NewQuestion from './pages/NewQuestion';
 
 type AppState = {
   dispatch:Function,
@@ -21,7 +22,9 @@ class App extends Component<AppState> {
     return (
       <div>
         <Route path="/" exact component={Home}/>
-        <Route path="/login" component={Login}/>
+        <Route path="/Login" component={Login}/>
+        <Route path="/NewQuestion" component={NewQuestion}/>
+
       </div>
     )
   }

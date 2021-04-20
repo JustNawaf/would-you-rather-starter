@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
 import { logout, UserInterface } from '../actions/Auth';
 import { StoreInterface } from '../store';
 import { Redirect } from 'react-router-dom';
+import { setQuestions } from '../actions/Questions';
 
 
 interface NavState extends RouteComponentProps{
@@ -37,8 +38,8 @@ class Nav extends Component<NavState> {
     render() {
         const { auth, location } = this.props;
 
-        if(auth === null && location.pathname !== "/login")
-            return <Redirect to="login" />
+        if(auth === null && location.pathname !== "/Login")
+            return <Redirect to="Login" />
 
         return (
             <div>
@@ -52,11 +53,11 @@ class Nav extends Component<NavState> {
                         <div className="hidden md:block">
                             <div className="ml-10 flex items-baseline space-x-4">
 
-                            <button  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</button>
+                                <Link to="/"  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</Link>
 
-                            <button  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">New Question</button>
+                                <Link to="/NewQuestion" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">New Question</Link>
 
-                            <button  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Leader Board</button>
+                                <Link to="LeaderBoard"  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Leader Board</Link>
 
                             </div>
                         </div>
@@ -70,6 +71,7 @@ class Nav extends Component<NavState> {
                                             <button type="button" onClick={this.toggleUserModal} className="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                                 <span className="sr-only">Open user menu</span>
                                                 <img className="h-8 w-8 rounded-full" src={auth.avatarURL} alt=""/>
+                                                <span className="text-white ml-2" >{auth.name}</span>
                                             </button>
                                         </div>
                                         
@@ -105,11 +107,11 @@ class Nav extends Component<NavState> {
 
                         <div className="md:hidden" id="mobile-menu">
                             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                                <button  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Home</button>
+                                <Link to="/" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Home</Link>
 
-                                <button  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">New Question</button>
+                                <Link to="/NewQuestion" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">New Question</Link>
 
-                                <button  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Leader Board</button>
+                                <Link to="/LeaderBoard" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Leader Board</Link>
                             </div>
                             {
                                 auth !== null && 

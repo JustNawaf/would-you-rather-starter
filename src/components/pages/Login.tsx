@@ -3,22 +3,12 @@ import { connect } from 'react-redux'
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { handleLoginUser, UserInterface } from '../../actions/Auth';
 import { StoreInterface } from '../../store';
+import UserLogin from '../SharedComponent/UserLogin';
 
-interface LoginState extends RouteComponentProps {
-    dispatch:Function,
-    users:{
-        [key:string]:UserInterface
-    }
+interface LoginState{
+    users:Array<string>
 };
 class Login extends Component<LoginState,any> {
-
-    login(e:React.MouseEvent,user:UserInterface){
-        const { dispatch, history } = this.props;
-        e.preventDefault();
-        dispatch(handleLoginUser(user));
-        history.push(`/`);
-    };
-
     render() {
         const { users } = this.props;
 
@@ -27,17 +17,8 @@ class Login extends Component<LoginState,any> {
                 <div className="flex flex-col justify-center items-center">
                     <div className="flex flex-col lg:flex-row justify-center items-center">
                         {
-                            Object.keys(users).map((key) => (
-                                <div key={key} className={`flex flex-col mt-4 lg:mt-0 px-4 py-2 items-center w-64 h-80 mx-4 border-none rounded-md ${users[key].color}`}>
-                                    <img className="w-36 h-36 border-none rounded-full shadow-2xl" src={users[key].avatarURL} alt="User Avatar"/>
-                                    <h1 className="text-md text-gray-800 font-mono mt-2">{users[key].name}</h1>
-                                    <div className="w-full h-full flex justify-center items-center">
-                                        <button className="w-full bg-gray-800 text-white py-1 border-none 
-                                        rounded-md transition duration-150 hover:bg-gray-900 focus:outline-none" onClick={(e) => this.login(e,users[key])}>
-                                            Login
-                                        </button>
-                                    </div>
-                                </div>
+                            users.map((id) => (
+                                <UserLogin key={id} id={id}/>
                             ))
                         }
                     </div>
@@ -58,8 +39,8 @@ class Login extends Component<LoginState,any> {
 function mapStateToProps(store:StoreInterface){
     const { users } = store;
     return {
-        users
+        users:Object.keys(users)
     };
 }
 
-export default withRouter<LoginState,any>(connect(mapStateToProps)(Login));
+export default connect(mapStateToProps)(Login);
