@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { connect } from 'react-redux';
 import { UserInterface } from '../../actions/Auth';
 import { StoreInterface } from '../../store';
@@ -13,7 +13,7 @@ type HomeState = {
   
 class Home extends Component<HomeState> {
     render() {
-        const { auth, ansquestions, unAnsquestions, myQuestions } = this.props;
+        const { ansquestions, unAnsquestions, myQuestions } = this.props;
     
         return (
             <div>
@@ -59,7 +59,7 @@ function mapStateToProps(store:StoreInterface) {
         auth,
         ansquestions:Object.keys(questions).filter((q) => Object.keys(auth.answers).includes(q)),
         unAnsquestions:Object.keys(questions).filter((q) => !Object.keys(auth.answers).includes(q)),
-        myQuestions:Object.keys(questions).filter((q) => questions[q].author == auth.id)
+        myQuestions:Object.keys(questions).filter((q) => questions[q].author === auth.id)
 
     };
 }

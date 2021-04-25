@@ -4,7 +4,6 @@ import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
 import { logout, UserInterface } from '../actions/Auth';
 import { StoreInterface } from '../store';
 import { Redirect } from 'react-router-dom';
-import { setQuestions } from '../actions/Questions';
 
 
 interface NavState extends RouteComponentProps{
@@ -39,7 +38,7 @@ class Nav extends Component<NavState> {
         const { auth, location } = this.props;
 
         if(auth === null && location.pathname !== "/Login")
-            return <Redirect to="Login" />
+            return <Redirect to="/Login" />
 
         return (
             <div>

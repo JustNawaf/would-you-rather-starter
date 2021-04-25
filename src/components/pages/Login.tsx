@@ -1,7 +1,5 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { connect } from 'react-redux'
-import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { handleLoginUser, UserInterface } from '../../actions/Auth';
 import { StoreInterface } from '../../store';
 import UserLogin from '../SharedComponent/UserLogin';
 

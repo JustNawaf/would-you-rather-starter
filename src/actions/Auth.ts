@@ -1,11 +1,15 @@
 export const LOG_IN = "LOG_IN";
 export const LOG_OUT = "LOG_OUT";
 export const UPDATE_QUESTIONS_USER = "UPDATE_QUESTIONS_USER";
+export const ADD_QUESTION_ANS_TO_USER = "ADD_QUESTION_ANS_TO_USER";
 
 export interface UserActionInterface {
     type:string,
     user:UserInterface,
-    id?:string
+    questionID?:string,
+    ans?:{
+        [key:string]:string
+    }
 
 };
 
@@ -40,15 +44,17 @@ export function handleLoginUser(user:UserInterface){
     }
 }
 
+export function addAnswerToUser(ans:{[key:string]:string}){
+    return {
+        type:ADD_QUESTION_ANS_TO_USER,
+        ans
+    }
+}
+
 
 export function addQuestionToUser(user:UserInterface,questionID:string){
-    let updatedUser = {
-        ...user,
-        questions:user.questions.concat(questionID)
-    };
-
     return {
         type:UPDATE_QUESTIONS_USER,
-        user:updatedUser
+        questionID
     }
 }

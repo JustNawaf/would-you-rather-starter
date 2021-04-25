@@ -1,5 +1,4 @@
-import { _getQuestions, _getUsers } from '../Data/_Data';
-import { setQuestions } from './Questions';
+import { _getUsers } from '../Data/_Data';
 import { setUsers } from './Users';
 
 export const handleInitialData = () => {

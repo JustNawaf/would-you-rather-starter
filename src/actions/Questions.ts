@@ -1,9 +1,9 @@
-import { create } from "node:domain";
 import { _getQuestions, _saveQuestion } from "../Data/_Data";
 import { addQuestionToUser, UserInterface } from "./Auth";
 
 export const SET_QUESTIONS = "SET_QUESTIONS";
 export const CREATE_QUESTION = "CREATE_QUESTION";
+export const ADD_ANSWER_TO_QUESTION = "ADD_ANSWER_TO_QUESTION";
 
 
 export interface QuestionInterface{
@@ -19,12 +19,15 @@ export interface OptionInterface{
     text:string
 }
 
-export interface setQuestionsActionInterface{
+export interface QuestionsActionInterface{
     type:string,
     questions?:{
         [key:string]:QuestionInterface
     },
     question?:QuestionInterface,
+    userID?:string,
+    ans?:string
+    qid?:string
 }
 
 
@@ -59,4 +62,15 @@ export function handleCreateQuestion(user:UserInterface,question:any){
             dispatch(addQuestionToUser(user,q.id))
         })
     }
+}
+
+
+export function addAnswerToQuestion(userID:string,ans:string,qid:string){
+    return {
+        type:ADD_ANSWER_TO_QUESTION,
+        userID,
+        ans,
+        qid
+    }
+
 }
