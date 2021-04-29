@@ -1,4 +1,4 @@
-import { ADD_QUESTION_ANS_TO_USERS, setUsersActionInterface, SET_USERS } from '../actions/Users';
+import { ADD_QUESTION_ANS_TO_USERS, ADD_QUESTION_TO_USERS, setUsersActionInterface, SET_USERS } from '../actions/Users';
 
 export default function users(state:any = {}, action: setUsersActionInterface) {
     switch (action.type) {
@@ -22,9 +22,22 @@ export default function users(state:any = {}, action: setUsersActionInterface) {
                 }
 
             return {
-                state:{}
+                ...state
             };
+        
+        case ADD_QUESTION_TO_USERS :
+            if(action.addQuestion)
+                return {
+                    ...state,
+                    [action.addQuestion.userID]:{
+                        ...state[action.addQuestion.userID],
+                        questions:state[action.addQuestion.userID].questions.concat(action.addQuestion.qID)
+                }
+            }
 
+            return {
+                ...state
+            }
         default :
             return state;
     }

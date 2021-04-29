@@ -14,24 +14,35 @@ interface QuestionState{
 
 class Question extends Component<QuestionState> {
 
+    get questionText(){
+        const { question } = this.props;
+        return question.optionOne.text.substr(0,17);
+    };
+
     render() {
         const { question, questionUser } = this.props;
 
         return (
-            <div className={`w-full my-6 lg:mt-0 px-4 py-2 border-none rounded-md shadow`} style={{ minWidth:'fit-content' }}>
-                <div className="w-full bg-gray-200 border border-gray-300 -mt-4 px-4 py-2 shadow-md">
-                    <p>{questionUser.name} Asks</p>
-                </div>
-                <div className="w-full my-2 flex flex-row">
-                    <div className="lg:w-1/2 flex justify-center items-center border-r">
-                        <img src={questionUser.avatarURL} alt="User Avatar" className="lg:w-24 lg:h-24 "/>
-                    </div>  
-                    <div className="mx-8 w-2/3 text-left">
-                        <h1 className="w-full  my-2 text-md lg:text-xl font-mono"> Would You Rather</h1>
-                        <p className="my-2 text-sm text-gray-400">...{question.optionOne.text}...</p>
-                        <Link to={`/view/${question.id}`} className="w-full block text-center my-2 border border-gray-400 
-                        rounded transition duration-100 text-gray-400 py-2 hover:bg-gray-400 hover:text-white">View Poll</Link>
-                    </div>  
+            <div className="w-full h-full shadow bg-white rounded-md m-2" style={{ minWidth:'fit-content' }}>
+                <div className="w-full grid grid-cols-5">
+                    <div className="bg-cst-3 text-white col-span-2 rounded-l-md px-4 py-2">
+                        <div className="w-full h-full shadow-lg flex flex-col justify-center items-center">
+                            <div className="grid grid-row-2">
+                                <div className="w-full h-full flex flex-col justify-between">
+                                    <img className="w-24 h-24 row-span-1" src={questionUser.avatarURL}/>
+                                    <h3 className="row-span-1">{questionUser.name}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-span-3 px-4 bg-gray-50 rounded-r-md">
+                        <div className="w-full h-full flex flex-col justify-between">
+                            <p className="text-lg">Would You Rather</p>
+                            <p className="my-2 text-sm text-gray-400 ">...{this.questionText}...</p>
+                            <Link to={`/view/${question.id}`} className="w-full block text-center my-2 border border-cst1-1 
+                                rounded transition duration-100 text-cst1-1 py-2 hover:bg-cst1-1  hover:text-white">View Poll</Link>
+                        </div>
+                    </div>
                 </div>
             </div>
         )

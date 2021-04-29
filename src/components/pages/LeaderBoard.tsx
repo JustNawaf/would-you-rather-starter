@@ -14,10 +14,10 @@ class LeaderBoard extends Component<UserBoardState> {
         const { usersIDs } = this.props;
         return (
             <div className="w-full h-full flex justify-center items-center">
-                <div className="w-1/2 h-full">
+                <div className="w-full px-2 lg:px-0 lg:w-1/2 h-full">
                     {
-                        usersIDs.map((id) => (
-                            <UserBoard key={id} id={id} />
+                        usersIDs.map((id,index) => (
+                            <UserBoard key={id} order={index} id={id} />
                         ))
                     }
                 </div>

@@ -5,7 +5,8 @@ import { StoreInterface } from '../../store';
 
 
 interface UserBoardState{
-    user:UserInterface
+    user:UserInterface,
+    order:number,
 };
 
 
@@ -24,11 +25,16 @@ class UserBoard extends Component<UserBoardState> {
         return Object.keys(user.answers).length;
     }
 
+    get medal(){
+        const { order } = this.props;
+        return order === 0 ? 'text-yellow-600 bg-yellow-400' : order === 1 ? 'text-gray-600 bg-gray-400':'text-yellow-900 bg-yellow-700'
+    };
+
     render() {
-        const { user } = this.props;
+        const { user, order } = this.props;
         return (
-            <div className="w-full my-4">
-                <div className="relative w-full h-full p-2 grid grid-cols-8 border rounded-md shadow-md">
+            <div className="w-full my-8 lg:my-4">
+                <div className="relative w-full h-full p-2 grid grid-cols-8 border rounded-r-md shadow-md">
                     <div className="col-span-2 p-2 border-r">
                         <img className="w-full h-full" src={user.avatarURL} alt="User Avatar" />
                     </div>
@@ -43,13 +49,15 @@ class UserBoard extends Component<UserBoardState> {
                             <p className="my-1">{this.totalQuestions}</p>
                         </div>
                     </div>
-                    <div className="col-span-2 p-2">
-                        <div className="w-full h-full shadow-md">
-                            <div className="w-full bg-gray-200 text-center py-1">Score</div>
-                            <div className="w-full bg-white text-center py-4">{this.score}</div>
+                    <div className="col-span-2 p-2 flex flex-col justify-center">
+                        <div className="w-full bg-gray-200 text-center py-1">Score</div>
+                        <div className="w-full flex flex-col justify-center shadow-md">
+                            <div className="w-full text-xl bg-white text-center py-4">{this.score}</div>
                         </div>
                     </div>
-                    <span className="absolute top-0 left-0 w-6 h-6 bg-yellow-400 border-none rounded-full"></span>
+                    <span className={`absolute -top-6 w-1/2 left-1/4 rounded-t-md lg:top-1/4 lg:-left-8 lg:w-6 z-0 lg:h-1/2 ${this.medal} lg:rounded-l-md flex justify-center items-center `}>
+                        <span>{ order + 1 }</span>
+                    </span>
                 </div>
             </div>
         )

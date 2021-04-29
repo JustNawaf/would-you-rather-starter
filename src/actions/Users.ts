@@ -4,6 +4,7 @@ export const LOG_IN = "LOG_IN";
 export const LOG_OUT = "LOG_OUT";
 export const SET_USERS = "SET_USERS";
 export const ADD_QUESTION_ANS_TO_USERS = "ADD_QUESTION_ANS_TO_USERS";
+export const ADD_QUESTION_TO_USERS = "ADD_QUESTION_TO_USERS";
 export interface setUsersActionInterface {
     type:string,
     users:{
@@ -12,6 +13,10 @@ export interface setUsersActionInterface {
     data?:{
         ans:{[key:string]:string},
         id:string,
+    },
+    addQuestion:{
+        userID:string,
+        qID:string,
     }
 
 };
@@ -31,3 +36,14 @@ export function addAnswerToUsers(data:{ans:{[key:string]:string,id:string}}){
         data
     }
 }
+
+
+export function addQuestionToUsers(user:UserInterface,questionID:string){
+    return {
+        type:ADD_QUESTION_TO_USERS,
+        addQuestion:{
+            userID:user.id,
+            qID:questionID
+        }
+    }
+};

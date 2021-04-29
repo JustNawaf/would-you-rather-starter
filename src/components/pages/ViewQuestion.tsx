@@ -54,6 +54,11 @@ class ViewQuestion extends Component<ViewQuestionState> {
         }
     };
 
+    isMyVote = (option:string) => {
+        const { question,auth } = this.props;
+        return auth.answers[question.id] === option;
+    };
+
     render() {
         const { question, questionUser, isQuestionAnswred } = this.props;
         const { selectedOption } = this.state;
@@ -105,19 +110,18 @@ class ViewQuestion extends Component<ViewQuestionState> {
                                     </div>  
                                     <div className="mx-8 w-2/3 text-left">
                                         <h1 className="w-full  my-2 text-md lg:text-xl font-mono"> Would You Rather</h1>
-                                        <div className="relative px-4 py-2 border rounded-md shadow my-2">
-                                            <div className="w-full h-full relative z-10 ">
-                                                <label htmlFor="optionOne" className={`w-full h-full ${this.getQustionPresntege().optionOne.total === 0 ? 'text-black':'text-white'}`}>{question.optionOne.text}</label>
+                                        <div className={`relative px-4 py-2  ${this.isMyVote('optionOne') ? 'bg-green-200 border border-green-400':''} rounded-md shadow my-2`}>
+                                            <div className="w-full h-full relative z-10">
+                                                <label htmlFor="optionOne" className={`w-full h-full`}>{question.optionOne.text}</label>
+                                                
                                                 <span className="absolute right-2 text-black">{this.getQustionPresntege().optionOne.total}</span>
                                             </div>
-                                            <span className="absolute top-0 border-none rounded-md left-0 h-full bg-gradient-to-r from-green-400 z-0" style={{ width:`${this.getQustionPresntege().optionOne.value}%` }}></span>
                                         </div>
-                                        <div className="relative px-4 py-2 border rounded-md shadow my-2">
+                                        <div className={`relative px-4 py-2  ${this.isMyVote('optionTwo') ? 'bg-green-200 border border-green-400':''} rounded-md shadow my-2`}>
                                             <div className="w-full h-full relative z-10 ">
-                                                <label htmlFor="optionTwo" className={`w-full h-full ${this.getQustionPresntege().optionTwo.total === 0 ? 'text-black':'text-white'}`}>{question.optionTwo.text}</label>
+                                                <label htmlFor="optionTwo" className={`w-full h-full`}>{question.optionTwo.text}</label>
                                                 <span className="absolute right-2 text-black">{this.getQustionPresntege().optionTwo.total}</span>
                                             </div>
-                                            <span className="absolute top-0 border-none rounded-md left-0 h-full bg-gradient-to-r from-blue-400 z-0" style={{ width:`${this.getQustionPresntege().optionTwo.value}%` }}></span>
                                         </div>
                                     </div>
                                 </div>

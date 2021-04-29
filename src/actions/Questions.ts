@@ -1,5 +1,6 @@
 import { _getQuestions, _saveQuestion } from "../Data/_Data";
 import { addQuestionToUser, UserInterface } from "./Auth";
+import { addQuestionToUsers } from "./Users";
 
 export const SET_QUESTIONS = "SET_QUESTIONS";
 export const CREATE_QUESTION = "CREATE_QUESTION";
@@ -60,6 +61,7 @@ export function handleCreateQuestion(user:UserInterface,question:any){
         _saveQuestion(question).then((q) => {
             dispatch(createQuestion(q))
             dispatch(addQuestionToUser(user,q.id))
+            dispatch(addQuestionToUsers(user,q.id))
         })
     }
 }

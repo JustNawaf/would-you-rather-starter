@@ -26,7 +26,7 @@ class UserLogin extends Component<UserLoginState> {
 
         return (
             <div className={`flex flex-col mt-4 lg:mt-0 px-4 py-2 items-center w-64 h-80 mx-4 border-none rounded-md ${user.color}`}>
-                <img className="w-36 h-36 border-none rounded-full shadow-2xl" src={user.avatarURL} alt="User Avatar"/>
+                <img className="w-36 h-36 border-none rounded-full shadow-inner" src={user.avatarURL} alt="User Avatar"/>
                 <h1 className="text-md text-gray-800 font-mono mt-2">{user.name}</h1>
                 <div className="w-full h-full flex justify-center items-center">
                     <button className="w-full bg-gray-800 text-white py-1 border-none 
