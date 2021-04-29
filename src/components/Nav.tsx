@@ -51,7 +51,7 @@ class Nav extends Component<NavState> {
         const { auth, location } = this.props;
 
         if(auth === null && location.pathname !== "/Login")
-            return <Redirect to="/Login" />
+            return <Redirect push to="/Login" />
 
             return (
             <div>
@@ -74,7 +74,7 @@ class Nav extends Component<NavState> {
                                 }
                                 {
                                     auth !== null && 
-                                    <Link to="/NewQuestion" className={`${this.getLocation() === '/NewQuestion' ? 'bg-gray-700 text-white':'text-cst-3'} border-none 
+                                    <Link to="/add" className={`${this.getLocation() === '/add' ? 'bg-gray-700 text-white':'text-cst-3'} border-none 
                                     transition duration-150 focus:outline-none hover:bg-cst-3 
                                     hover:text-white px-3 py-2 rounded-md text-sm font-medium`}>New Question</Link>
                                 }
@@ -95,9 +95,10 @@ class Nav extends Component<NavState> {
                                 <div className="ml-4 flex items-center md:ml-6">                           
                                     <div className="ml-3 relative">
                                         <div>
-                                            <button type="button" onClick={this.toggleUserModal} className="max-w-xs rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                                            <button type="button" onClick={this.toggleUserModal} className="max-w-xs p-2 rounded-full flex items-center text-sm focus:outline-none focus:shadow focus:bg-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                                 <span className="sr-only">Open user menu</span>
                                                 <img className="h-8 w-8 rounded-full" src={auth.avatarURL} alt=""/>
+                                                <span className="text-sm ml-2">{auth.name}</span>
                                             </button>
                                         </div>
                                         
@@ -141,7 +142,7 @@ class Nav extends Component<NavState> {
 
                                 {
                                     auth !== null &&
-                                    <Link to="/NewQuestion" className={`hover:bg-gray-700 ${this.getLocation() === '/NewQuestion' ? 'bg-gray-700 text-white':'text-cst-3'}
+                                    <Link to="/add" className={`hover:bg-gray-700 ${this.getLocation() === '/add' ? 'bg-gray-700 text-white':'text-cst-3'}
                                     hover:text-white block px-3 py-2 rounded-md text-base font-medium`}>New Question</Link>
                                 }
 

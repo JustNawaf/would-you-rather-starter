@@ -29,7 +29,7 @@ class Question extends Component<QuestionState> {
                         <div className="w-full h-full shadow-lg flex flex-col justify-center items-center">
                             <div className="grid grid-row-2">
                                 <div className="w-full h-full flex flex-col justify-between">
-                                    <img className="w-24 h-24 row-span-1" src={questionUser.avatarURL}/>
+                                    <img className="w-24 h-24 row-span-1" src={questionUser.avatarURL} alt="User Avatar"/>
                                     <h3 className="row-span-1">{questionUser.name}</h3>
                                 </div>
                             </div>
@@ -39,7 +39,7 @@ class Question extends Component<QuestionState> {
                         <div className="w-full h-full flex flex-col justify-between">
                             <p className="text-lg">Would You Rather</p>
                             <p className="my-2 text-sm text-gray-400 ">...{this.questionText}...</p>
-                            <Link to={`/view/${question.id}`} className="w-full block text-center my-2 border border-cst1-1 
+                            <Link to={`/questions/${question.id}`} className="w-full block text-center my-2 border border-cst1-1 
                                 rounded transition duration-100 text-cst1-1 py-2 hover:bg-cst1-1  hover:text-white">View Poll</Link>
                         </div>
                     </div>

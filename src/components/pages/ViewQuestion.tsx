@@ -30,7 +30,7 @@ class ViewQuestion extends Component<ViewQuestionState> {
         };
 
         dispatch(handleAddAnswer(data));
-        history.push(`/view/${question.id}`);
+        history.push(`/questions/${question.id}`);
     };
 
     getQustionPresntege = () => {

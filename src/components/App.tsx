@@ -25,9 +25,9 @@ class App extends Component<AppState> {
       <div>
         <Route path="/" exact component={Home}/>
         <Route path="/Login" component={Login}/>
-        <Route path="/NewQuestion" exact component={NewQuestion}/>
+        <Route path="/add" exact component={NewQuestion}/>
         <Route path="/LeaderBoard" exact component={LeaderBoard}/>
-        <Route path="/view/:id" component={ViewQuestion}/>
+        <Route path="/questions/:id" component={ViewQuestion}/>
 
       </div>
     )

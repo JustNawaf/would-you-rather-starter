@@ -18,7 +18,7 @@ class UserLogin extends Component<UserLoginState> {
         e.preventDefault();
         dispatch(handleLoginUser(user));
         dispatch(handleSetQuestions());
-        history.push(`/`);
+        history.goBack();
     };
 
     render() {

@@ -17,24 +17,12 @@ class Home extends Component<HomeState> {
     };
 
     render() {
-        const { ansquestions, unAnsquestions, myQuestions } = this.props;
+        const { ansquestions, unAnsquestions} = this.props;
         const { show } = this.state;
 
         return (
             <div>
                 <div className="w-full h-full">
-                    {/* <div className="w-full  rounded-md text-center px-4 py-2 mb-6">
-                        <h1 className="mb-6">My Questions</h1>
-                        <div className="w-full h-full bg-cst1-3 rounded-md shadow-inner py-4">
-                            <div className="w-full flex flex-row px-4 justify-items-start overflow-x-auto">
-                                {
-                                    myQuestions.map((id) => (
-                                        <Question key={id} id={id} />
-                                    ))
-                                }
-                            </div>
-                        </div>
-                    </div> */}
                     <div className="w-full flex justify-center">
                             <div className="w-full px-2 lg:px-0 lg:w-2/4">
                                 <div className="relative flex justify-evenly py-2 bg-gray-200 border-none rounded-t-md shadow z-10">
@@ -92,10 +80,18 @@ function mapStateToProps(store:StoreInterface) {
 
     return {
         auth,
-        ansquestions:Object.keys(questions).filter((q) => Object.keys(auth.answers).includes(q)),
-        unAnsquestions:Object.keys(questions).filter((q) => !Object.keys(auth.answers).includes(q)),
-        myQuestions:Object.keys(questions).filter((q) => questions[q].author === auth.id)
+        ansquestions:Object.keys(questions).filter((q) => Object.keys(auth.answers).includes(q)).sort((a:any,b:any) => {
+            let aQ:any = questions[a];
+            let bQ:any = questions[b];
 
+            return bQ.timestamp - aQ.timestamp;
+        }),
+        unAnsquestions:Object.keys(questions).filter((q) => !Object.keys(auth.answers).includes(q)).sort((a:any,b:any) => {
+            let aQ:any = questions[a];
+            let bQ:any = questions[b];
+
+            return bQ.timestamp - aQ.timestamp;
+        }),
     };
 }
 
