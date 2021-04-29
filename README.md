@@ -2,7 +2,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-
+# Description
+1. This is a project for Udacity ReactJS Course.
+2. The project is hole about would you rather questions.
+3. The user can login and create question or submit an answer for someone is question.
 ## How To Run
 1. First You Need to clone this project by using `git clone https://github.com/JustNawaf/would-you-rather-starter.git`.
 2. After Downloading the project, you need to go to terminal and type `npm install`
