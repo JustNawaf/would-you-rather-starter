@@ -2,6 +2,13 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+## How To Run
+1. First You Need to clone this project by using `git clone https://github.com/JustNawaf/would-you-rather-starter.git`.
+2. After Downloading the project, you need to go to terminal and type `npm install`
+3. To Run The Project you need to type npm start. for more information please see below.
+
+
 ## Available Scripts
 
 In the project directory, you can run:
