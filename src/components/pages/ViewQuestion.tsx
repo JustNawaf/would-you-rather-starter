@@ -5,7 +5,7 @@ import { UserInterface } from '../../actions/Auth';
 import { QuestionInterface } from '../../actions/Questions';
 import { handleAddAnswer } from '../../actions/Shared';
 import { StoreInterface } from '../../store'
-
+import NotFound from './Errors/NotFound';
 interface ViewQuestionState extends RouteComponentProps{
     dispatch:Function,
     question:QuestionInterface | undefined,
@@ -94,9 +94,7 @@ class ViewQuestion extends Component<ViewQuestionState> {
         }
 
         if(question === undefined){
-            return (
-                <Redirect push to="/NotFound" />
-            )
+            return <NotFound />
         }
 
         if(question !== undefined || questionUser !== undefined)
